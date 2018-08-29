@@ -1,6 +1,6 @@
 import time
-
 import pygame
+import config
 
 BLACK = (0,   0,   0)
 WHITE = (255, 255, 255)
@@ -14,7 +14,7 @@ class Window:
 
     def setup(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((400, 300))
+        self.screen = pygame.display.set_mode((config.WINDOW_SIZE, config.WINDOW_SIZE))
 
     def testDisplay(self):
         x = 0
@@ -29,3 +29,21 @@ class Window:
             pygame.draw.rect(self.screen, GREEN, (x, x, 100, 100))
             pygame.display.update()
             x += 1
+
+    def draw(self, game):
+        # fill screen with black to clear
+        self.screen.fill(BLACK)
+
+        # draw bird
+        birdX = game.birdHorizontal
+        birdY = game.birdHeight
+
+        pygame.draw.rect(self.screen, RED, (
+            birdX - config.BIRDSIZE/2,
+            birdY - config.BIRDSIZE/2,
+            config.BIRDSIZE,
+            config.BIRDSIZE
+        ))
+
+        pygame.display.update()
+
