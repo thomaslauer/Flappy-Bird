@@ -1,6 +1,8 @@
 import pygame
 import config
 
+from random import randint
+
 class Pipe:
     def __init__(self, height):
         self.height = height
@@ -45,8 +47,7 @@ class Game:
         
         if self.frameNum % config.PIPE_FREQUENCY == 0:
             # spawn new pipe
-            print("added new pipe")
-            newPipe = Pipe(250)
+            newPipe = Pipe(randint(100, 400))
             self.currentPipes.append(newPipe)
         self.frameNum += 1
         
