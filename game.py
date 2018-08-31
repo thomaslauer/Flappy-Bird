@@ -6,7 +6,7 @@ class Pipe:
         self.height = height
         self.width = config.PIPE_SIZE
         self.x = config.WINDOW_SIZE
-        self.gap = config.WINDOW_SIZE / 4
+        self.gap = config.WINDOW_SIZE / 3
     
     def move(self, amount):
         self.x -= amount

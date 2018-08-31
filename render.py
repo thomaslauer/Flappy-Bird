@@ -40,8 +40,8 @@ class Window:
         birdY = game.birdHeight
 
         pygame.draw.rect(self.screen, RED, (
-            birdX - config.BIRD_SIZE/2,
-            birdY - config.BIRD_SIZE/2,
+            birdX,
+            birdY,
             config.BIRD_SIZE,
             config.BIRD_SIZE
         ))
@@ -49,10 +49,18 @@ class Window:
         for pipe in game.currentPipes:
             pygame.draw.rect(self.screen, GREEN, (
                 pipe.x,
-                pipe.height,
+                pipe.height + pipe.gap/2,
                 pipe.width,
                 1000
             ))
 
+            pygame.draw.rect(self.screen, GREEN, (
+                pipe.x,
+                0,
+                pipe.width,
+                pipe.height - pipe.gap/2,
+            ))
+
         pygame.display.update()
 
+        
