@@ -1,6 +1,7 @@
 import time
 import pygame
 import config
+import game
 
 BLACK = (0,   0,   0)
 WHITE = (255, 255, 255)
@@ -39,11 +40,19 @@ class Window:
         birdY = game.birdHeight
 
         pygame.draw.rect(self.screen, RED, (
-            birdX - config.BIRDSIZE/2,
-            birdY - config.BIRDSIZE/2,
-            config.BIRDSIZE,
-            config.BIRDSIZE
+            birdX - config.BIRD_SIZE/2,
+            birdY - config.BIRD_SIZE/2,
+            config.BIRD_SIZE,
+            config.BIRD_SIZE
         ))
+
+        for pipe in game.currentPipes:
+            pygame.draw.rect(self.screen, GREEN, (
+                pipe.x,
+                pipe.height,
+                pipe.width,
+                1000
+            ))
 
         pygame.display.update()
 
