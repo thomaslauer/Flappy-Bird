@@ -1,5 +1,6 @@
 import pygame
 import config
+import util
 
 from random import randint
 
@@ -45,6 +46,8 @@ class Game:
         for pipe in self.currentPipes:
             pipe.move(config.PIPE_SPEED)
         
+        self.checkCollisions()
+
         if self.frameNum % config.PIPE_FREQUENCY == 0:
             # spawn new pipe
             newPipe = Pipe(randint(100, 400))
@@ -60,3 +63,16 @@ class Game:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self.birdVelocity = config.BIRD_VELOCITY
+
+    def checkCollisions(self):
+        birdRect = (self.birdHorizontal, self.birdHeight, config.BIRD_SIZE, config.BIRD_SIZE)
+
+        for pipe in self.currentPipes:
+            upperPipeRect = (pipe.x, 0, pipe.width, pipe.height - pipe.gap/2)
+            lowerPipeRect = (pipe.x, pipe.height + pipe.gap/2, pipe.width, 1000)
+
+            if util.checkCollide(birdRect, upperPipeRect):
+                print("collided with upper rect")
+            if util.checkCollide(birdRect, lowerPipeRect):
+                print("collided with lower rect")
+
