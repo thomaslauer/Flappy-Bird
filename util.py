@@ -4,6 +4,5 @@ def checkCollide(rectA, rectB):
             rectA[0] + rectA[2] > rectB[0] and 
             rectA[1] < rectB[1] + rectB[3] and
             rectA[1] + rectA[3] > rectB[1]):
-        print("collision detected!")
         return True
     return False
