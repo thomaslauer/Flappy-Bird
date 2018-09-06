@@ -1,4 +1,3 @@
-
 import pygame
 from render import Window
 from game import Game
@@ -15,7 +14,10 @@ def main():
         game.readInput(events)
         game.nextFrame()
         display.draw(game)
-
+        if game.checkCollisions():
+            game = Game()
+        if game.checkWindowCollisions():
+            game = Game()
 
         for event in events:
             if event.type == pygame.QUIT:

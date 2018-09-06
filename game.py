@@ -64,6 +64,14 @@ class Game:
                 if event.key == pygame.K_SPACE:
                     self.birdVelocity = config.BIRD_VELOCITY
 
+    def checkWindowCollisions(self):
+        """
+        Detects collisions with the top or bottom of the frame
+        """
+        if self.birdHeight < 0 or self.birdHeight + config.BIRD_SIZE > config.WINDOW_SIZE:
+            return True
+        return False
+
     def checkCollisions(self):
         birdRect = (self.birdHorizontal, self.birdHeight, config.BIRD_SIZE, config.BIRD_SIZE)
 
@@ -72,7 +80,7 @@ class Game:
             lowerPipeRect = (pipe.x, pipe.height + pipe.gap/2, pipe.width, 1000)
 
             if util.checkCollide(birdRect, upperPipeRect):
-                print("collided with upper rect")
+                return True
             if util.checkCollide(birdRect, lowerPipeRect):
-                print("collided with lower rect")
-
+                return True
+        return False
