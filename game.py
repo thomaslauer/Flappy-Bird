@@ -84,3 +84,18 @@ class Game:
             if util.checkCollide(birdRect, lowerPipeRect):
                 return True
         return False
+    
+    def writeCSV(self, writer):
+        data = dict()
+
+        data['frameNum'] = self.frameNum
+
+        if len(self.currentPipes) < 2:
+            data['distToPipe'] = self.currentPipes[-1].x
+        else:
+            data['distToPipe'] = self.currentPipes[-2].x
+
+        data['birdY'] = self.birdHeight
+        data['birdV'] = self.birdVelocity
+
+        writer.writerow(data)
