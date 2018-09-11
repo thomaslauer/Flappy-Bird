@@ -30,6 +30,7 @@ class Game:
         self.currentPipes = []
 
         self.frameNum = 0
+        self.jump = 0
     
     def nextFrame(self):
         """
@@ -56,6 +57,7 @@ class Game:
         
         
     def readInput(self, events):
+        self.jump = 0
         """
         Reads input from the user
         """
@@ -63,6 +65,7 @@ class Game:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self.birdVelocity = config.BIRD_VELOCITY
+                    self.jump = 1
 
     def checkWindowCollisions(self):
         """
@@ -97,5 +100,6 @@ class Game:
 
         data['birdY'] = self.birdHeight
         data['birdV'] = self.birdVelocity
+        data['jump'] = self.jump
 
         writer.writerow(data)
